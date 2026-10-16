@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Boy438 · 交互式 3D 教学课件</title>
+<meta name="description" content="交互式 3D 教学课件与可视化作品：高中生物细胞标本室、植物细胞互动课件。Three.js + 程序化建模，网页打开即用，适配手机与课堂投屏。" />
+<style>
+  :root{
+    --bg:#faf7f0; --card:#fffefb; --ink:#2d2a25; --ink2:#6d6459; --line:#e9e0d1;
+    --green:#5b9e5f; --green-d:#3f7a49; --violet:#6f5bd6; --shadow:0 10px 30px rgba(80,70,50,.08);
+    --sans:"Microsoft YaHei UI","Microsoft YaHei","PingFang SC",system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.75;
+       -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+  header{background:radial-gradient(1200px 420px at 20% -10%,#e7f3e6 0%,rgba(250,247,240,0) 60%),
+                  radial-gradient(900px 380px at 90% 0%,#ece7fb 0%,rgba(250,247,240,0) 55%);padding:74px 0 34px}
+  .badge{display:inline-block;padding:5px 13px;border:1px solid var(--line);border-radius:999px;
+         background:#fff;color:var(--green-d);font-size:13px;letter-spacing:.3px}
+  h1{font-size:clamp(27px,4.4vw,43px);line-height:1.28;margin:20px 0 14px;letter-spacing:-.4px}
+  .lead{font-size:clamp(15px,1.7vw,17px);color:var(--ink2);max-width:62ch;margin:0 0 26px}
+  .cta{display:flex;gap:12px;flex-wrap:wrap;margin:0 0 10px}
+  .btn{display:inline-block;padding:11px 20px;border-radius:12px;border:1px solid var(--line);
+       background:#fff;color:var(--ink);text-decoration:none;font-size:15px;transition:.18s;box-shadow:var(--shadow)}
+  .btn:hover{transform:translateY(-2px)}
+  .btn.primary{background:linear-gradient(135deg,var(--green),var(--green-d));border-color:transparent;color:#fff}
+  main{padding:8px 0 40px}
+  section{padding:30px 0}
+  h2{font-size:22px;margin:0 0 6px}
+  .sub{color:var(--ink2);font-size:14px;margin:0 0 22px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;
+        box-shadow:var(--shadow);display:flex;flex-direction:column}
+  .card img{width:100%;height:210px;object-fit:cover;display:block;border-bottom:1px solid var(--line);background:#f3efe6}
+  .card .body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .card h3{margin:0;font-size:17px}
+  .tag{display:inline-block;font-size:12px;color:var(--violet);background:#f1eefc;border-radius:8px;padding:2px 9px;margin-right:6px}
+  .card p{margin:0;color:var(--ink2);font-size:14.5px}
+  .card ul{margin:0;padding-left:20px;color:var(--ink2);font-size:14.5px}
+  .card .links{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+  .card .links a{font-size:14px;text-decoration:none;padding:8px 14px;border-radius:10px;border:1px solid var(--line)}
+  .card .links a.live{background:var(--green);border-color:transparent;color:#fff}
+  .card .links a.gh{color:var(--ink2)}
+  .svc{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .svc div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+  .svc b{display:block;margin-bottom:6px}
+  .svc span{color:var(--ink2);font-size:14.5px}
+  footer{border-top:1px solid var(--line);color:var(--ink2);font-size:13.5px;padding:22px 0 40px;text-align:center}
+  a{color:var(--green-d)}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <span class="badge">Three.js · 交互式教学课件</span>
+    <h1>把课本里的插图，变成能转、能点、能剖开的 3D 模型</h1>
+    <p class="lead">我是 Boy438，做面向课堂的交互式课件：结构可旋转缩放、点选即出讲解、支持剖面观察，
+      手机和教室投屏都能直接打开，不装任何软件。</p>
+    <p class="cta">
+      <a class="btn primary" href="#works">看两个成品</a>
+      <a class="btn" href="https://github.com/Boy438" target="_blank" rel="noopener">GitHub 主页</a>
+    </p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="works">
+    <h2>作品</h2>
+    <p class="sub">都是网页版，点开即用；源码全部开源，可二次定制。</p>
+    <div class="grid">
+      <article class="card">
+        <img src="./thumbs/studio.png" alt="植物细胞标本室 · 完整版课件截图" loading="lazy" />
+        <div class="body">
+          <h3>植物细胞标本室 · 完整版</h3>
+          <div><span class="tag">10 个细胞器</span><span class="tag">剖面观察</span><span class="tag">随堂测验</span></div>
+          <p>程序化生成的植物细胞模型，点选任意细胞器查看结构与功能，可拖动剖面看内部关系，还能一键导出 GLB 用于 3D 打印。</p>
+          <div class="links">
+            <a class="live" href="https://boy438.github.io/plant-cell-studio/" target="_blank" rel="noopener">在线体验 →</a>
+            <a class="gh" href="https://github.com/Boy438/plant-cell-studio" target="_blank" rel="noopener">源码</a>
+          </div>
+        </div>
+      </article>
+      <article class="card">
+        <img src="./thumbs/lowpoly.png" alt="植物细胞 · 轻量版互动课件截图" loading="lazy" />
+        <div class="body">
+          <h3>植物细胞 · 轻量版互动课件</h3>
+          <div><span class="tag">单页文件</span><span class="tag">低多边形</span><span class="tag">断网可用</span></div>
+          <p>一个 HTML 文件 + 本地 Three.js，加载快、体积小，适合学生自己手机打开预习，或教室电脑离线演示。</p>
+          <div class="links">
+            <a class="live" href="https://boy438.github.io/cell-courseware/" target="_blank" rel="noopener">在线体验 →</a>
+            <a class="gh" href="https://github.com/Boy438/cell-courseware" target="_blank" rel="noopener">源码</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>能做的活</h2>
+    <p class="sub">不只是做课件，也能做任何「需要把抽象结构讲清楚」的网页。</p>
+    <div class="svc">
+      <div><b>学科课件定制</b><span>生物 / 化学 / 物理结构模型，点选讲解 + 随堂测验 + 手机适配。</span></div>
+      <div><b>3D 可视化小站</b><span>Three.js 交互页面：原理演示、产品展示、数据与结构的可视化。</span></div>
+      <div><b>旧课件改造</b><span>把静态 PPT、图片、Flash 老课件，改成能操作、能分享链接的网页版。</span></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>联系</h2>
+    <p class="sub">有课件需求或想合作，来 GitHub 开个 Issue 或私信，通常当天回复。</p>
+    <p class="cta"><a class="btn primary" href="https://github.com/Boy438" target="_blank" rel="noopener">在 GitHub 找我</a></p>
+  </section>
+</main>
+
+<footer>© 2026 Boy438 · 本站作品代码以 MIT 授权开源</footer>
+</body>
+</html>
